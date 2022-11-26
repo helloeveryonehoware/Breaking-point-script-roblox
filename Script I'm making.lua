@@ -9,6 +9,10 @@ local Dupes = Window:NewTab("Dupes")
 local Dupes = Dupes:NewSection("Dupes")
 local Visuals = Window:NewTab("Visuals")
 local Visuals = Visuals:NewSection("Visuals")
+local Credits = Credits:NewTab("Credits")
+local InfiniteCredits = Credits:NewSection("InfiniteCredits section")
+local Settings = Settings:NewTab("Settings")
+local Settings = Settings:NewSection("Settings")
 
 --Autofarms
 AutofarmSection:NewButton("Main autofarm", "the main autofarm can't get stopped", function()
@@ -92,7 +96,16 @@ if game.PlaceId == 648362523 then
             Text = "IsaaaKK#9010, DekuDimz, valor#7303, Iloveusingthis#3292, SkullKillls#2766"
         }
     )
+    repeat wait() until game:IsLoaded()
+    game.StarterGui:SetCore(
+        "SendNotification",
+        {
+            Title = "Inf credits tab",
+            Text = "Credits tab doesn't give credits to people who made it, it gives inf credits you have to click on 2 buttons"
+        }
+    )
 end
+
 
 Visuals:NewButton("Fullbright", "makes everything light up", function()
     local L = game:GetService("Lighting")
@@ -116,4 +129,44 @@ L.MapSaturation:Destroy()
 L.SkyBox:Destroy()
 L.BlackWhite:Destroy()
 sethiddenproperty(game.Workspace.Lighting,"Technology",2)
+end)
+
+InfiniteCredits:NewButton("InfiniteCredits (Execute first)", "This is the first inf credits script you execute", function()
+    while wait() do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(16, "public")
+        wait()
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v.Name ~= game.Players.LocalPlayer.Name then
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer(30, v)
+            end
+        end
+    end
+end)
+
+InfiniteCredits:NewButton("InfiniteCredits (Execute Second)", "this is the second inf credits script you execute", function()
+    while wait() do
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v.Name ~= game.Players.LocalPlayer.Name then
+                if game.Workspace:FindFirstChild(v.Name) then
+                    if game.Workspace[v.Name].Humanoid.Sit ~= true then
+                        if game.Workspace[v.Name]:FindFirstChild("Blade") then
+                            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(37, CFrame.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)), Vector3.new(v.Character.HumanoidRootPart.CFrame.x, 4, v.Character.HumanoidRootPart.CFrame.z), Vector3.new(0, 0, 0))
+                            wait(.1)
+                            game:GetService("ReplicatedStorage").RemoteEvent:FireServer(43, v.Character.HumanoidRootPart, v, "IIlIla", true)
+                        else
+                            if v.Backpack:FindFirstChild("Blade") then
+                                game:GetService("ReplicatedStorage").RemoteEvent:FireServer(37, CFrame.new(Vector3.new(0, 0, 0), Vector3.new(0, 0, 0)), Vector3.new(v.Character.HumanoidRootPart.CFrame.x, 4, v.Character.HumanoidRootPart.CFrame.z), Vector3.new(0, 0, 0))
+                                wait(.1)
+                                game:GetService("ReplicatedStorage").RemoteEvent:FireServer(43, v.Character.HumanoidRootPart, v, "IIlIla", true)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+
+Settings:NewKeybind("Keybind for menu", "Sets a keybind to toggle the UI", Enum.KeyCode.F, function()
+	Library:ToggleUI()
 end)
