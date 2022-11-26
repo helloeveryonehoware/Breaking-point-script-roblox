@@ -9,10 +9,8 @@ local Dupes = Window:NewTab("Dupes")
 local Dupes = Dupes:NewSection("Dupes")
 local Visuals = Window:NewTab("Visuals")
 local Visuals = Visuals:NewSection("Visuals")
-local Credits = Credits:NewTab("Credits")
+local Credits = Window:NewTab("Credits")
 local InfiniteCredits = Credits:NewSection("InfiniteCredits section")
-local Settings = Settings:NewTab("Settings")
-local Settings = Settings:NewSection("Settings")
 
 --Autofarms
 AutofarmSection:NewButton("Main autofarm", "the main autofarm can't get stopped", function()
@@ -165,8 +163,4 @@ InfiniteCredits:NewButton("InfiniteCredits (Execute Second)", "this is the secon
             end
         end
     end
-end)
-
-Settings:NewKeybind("Keybind for menu", "Sets a keybind to toggle the UI", Enum.KeyCode.F, function()
-	Library:ToggleUI()
 end)
