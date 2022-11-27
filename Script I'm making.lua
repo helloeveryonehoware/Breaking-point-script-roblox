@@ -11,8 +11,6 @@ local Visuals = Window:NewTab("Visuals")
 local Visuals = Visuals:NewSection("Visuals")
 local Credits = Window:NewTab("Credits")
 local InfiniteCredits = Credits:NewSection("InfiniteCredits section")
-local Autoaim = Window:NewTab("Autoaim")
-local Autoaimsection = Autoaim:NewSection("Aimbot section")
 
 --Autofarms
 AutofarmSection:NewButton("Main autofarm", "the main autofarm can't get stopped", function()
@@ -155,12 +153,4 @@ InfiniteCredits:NewButton("InfiniteCredits (Execute Second)", "this is the secon
             end
         end
     end
-end)
-
-
-
-
---Aimbot
-Autoaimsection:NewButton("Aimbot", "Spawns a aimbot scirpt", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/1iseo/breaking-point-public/main/main.lua"))()
 end)
