@@ -96,16 +96,6 @@ if game.PlaceId == 648362523 then
     )
 end
 
-repeat wait() until game:IsLoaded()
-game.StarterGui:SetCore(
-    "SendNotification",
-    {
-        Title = "Don't use anything in the player tab",
-        Text = "The walkspeed and jumpower isn't bypassed so you will get trade banned for it"
-    }
-)
-end
-
 
 Visuals:NewButton("Fullbright", "makes everything light up", function()
     local L = game:GetService("Lighting")
