@@ -66,18 +66,8 @@ end)
 local Player = Window:NewTab("Player")
 local PlayerSection = Player:NewSection("Player")
 
-PlayerSection:NewSlider("Walkspeed", "Sets your walkspeed", 60, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
-end)
 
-PlayerSection:NewSlider("Jumpower", "Sets your Jumpower", 70, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.Jumpower = s
-end)
 
-PlayerSection:NewButton("Reset", "Rests your jumpower and walkspeed", function()
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-    game.Players.LocalPlayer.Character.Humanoid.Jumpower = 50
-end)
 
 PlayerSection:NewButton("Bypassed Fly", "It's a bypassed fly idiot", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Nicuse/RobloxScripts/main/BypassedFly.lua"))() 
@@ -166,6 +156,9 @@ InfiniteCredits:NewButton("InfiniteCredits (Execute Second)", "this is the secon
         end
     end
 end)
+
+
+
 
 --Aimbot
 Autoaimsection:NewButton("Aimbot", "Spawns a aimbot scirpt", function()
