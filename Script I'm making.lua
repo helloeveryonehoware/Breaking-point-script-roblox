@@ -11,6 +11,8 @@ local Visuals = Window:NewTab("Visuals")
 local Visuals = Visuals:NewSection("Visuals")
 local Credits = Window:NewTab("Credits")
 local InfiniteCredits = Credits:NewSection("InfiniteCredits section")
+local Aimbot = Window:NewTab("Aimbotstuff")
+local AimbotSection = Aimbot:NewSection("Aimbot")
 
 --Autofarms
 AutofarmSection:NewButton("Main autofarm", "the main autofarm can't get stopped", function()
@@ -153,4 +155,46 @@ InfiniteCredits:NewButton("InfiniteCredits (Execute Second)", "this is the secon
             end
         end
     end
+end)
+
+
+--Aimbot
+
+AimbotSection:NewButton("Aimbot", "Uses aimbot to score kills faster", function()
+    --> variables
+local UIS = game:GetService("UserInputService")
+local camera = game.Workspace.CurrentCamera
+--> getting the closest player
+function getClosest()
+local closestPlayer = nil
+local closesDist = math.huge
+for i,v in pairs(game.Players:GetPlayers()) do
+if v ~= game.Players.LocalPlayer then
+local Dist = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude
+if Dist < closesDist then
+closesDist = Dist
+closestPlayer = v
+end
+end
+end
+return closestPlayer
+end
+
+--> starting the aimbot
+getgenv().aim = false
+UIS.InputBegan:Connect(function(inp)
+    if inp.UserInputType == Enum.UserInputType.MouseButton2 then
+    getgenv().aim = true
+    while wait() do
+        camera.CFrame = CFrame.new(camera.CFrame.Position,getClosest().Character.HumanoidRootPart.Position)
+        if getgenv().aim == false then return end
+    end
+    end
+end)
+--> ending the aimbot
+UIS.InputEnded:Connect(function(inp)
+    if inp.UserInputType == Enum.UserInputType.MouseButton2 then
+    getgenv().aim = false
+    end
+end)
 end)
