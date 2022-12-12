@@ -3,6 +3,8 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("loanoforeve's bp script", "Ocean")
 
 --Main
+local Welcome = Window:NewTab("Welcome")
+local Welcome = Welcome:NewSection("Welcome")
 local Autofarmstuff = Window:NewTab("Autofarm")
 local AutofarmSection = Autofarmstuff:NewSection("Autofarms")
 local Dupes = Window:NewTab("Dupes")
