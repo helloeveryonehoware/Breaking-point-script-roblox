@@ -1,6 +1,6 @@
 --Gui
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("the smartest bp script", "Ocean")
+local Window = Library.CreateLib("loanoforeve's bp script", "Ocean")
 
 --Main
 local Welcome = Window:NewTab("Welcome")
@@ -128,7 +128,7 @@ end)
 
 
 --Aimbot
-AimbotSection:NewButton("Silent aim", "Gives you magnetic hits to score kills easier", function()
+AimbotSection:NewButton("Silent aim", "Gives you magnetic bullets to score kills easier", function()
     --> VARIABLES <--
      local plrs = game:GetService("Players")
      local plr = plrs.LocalPlayer
