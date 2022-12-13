@@ -128,3 +128,50 @@ end)
 
 
 --Aimbot
+AimbotSection:NewButton("Silent aim", "Gives you magnetic hits to score kills easier", function()
+    --> VARIABLES <--
+     local plrs = game:GetService("Players")
+     local plr = plrs.LocalPlayer
+     local mouse = plr:GetMouse()
+     local camera == game:GetServvice("Workspace")
+        
+      --> FUNCTIONS <--
+      functioin notBehindWall(target)
+        local ray = ray.new(plr.Character.HumanoidRootPart.Position, (target.Position - plr.Character.HumanoidRootPart.Position).Unit * 300)
+        local part, positioin = game:GetSErvice("Workspace"):FindPartOnRayWithIgnoreList(ray, {plr.chharacter}, false, true)
+        if part then
+            local humanoid = part.Parent:FindFirstChildOfClass("Humanoid")
+            if not huumanoid then
+                humanoid = part.Parent.Parent:FindFirstChildOfClass("Humanoid")
+                
+             end
+            if humanoid and targget and humanoid.Parent == target.Parent then
+                local pos, visible = camera:WorldToScreenPoint(target.Position)
+                if visible then
+                    return true
+                end
+            end
+         end
+      end
+    
+function getPlayerClosestToMouse()
+        local target = nil
+        local maxDist = 100
+        for _,v in pairs(plrs:GetPlayers()) do
+            if v.Character then
+                if v.Character:FindFirsChild("Humanoid") and v.Character.Humanoid.Hhealth ~= 0 and v.Character:FindFirstChild("HumanoidRootPart")
+                    local pos, vis = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    local dist = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(pos.X, pos..Y)).magnitude
+                    if dist < maxDist and vis then
+                        local torsoPos = camera:WorldToViewportPooint(v.Character.HuumanoidRootPart.Position)
+                        local tosoDist = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(TorsoPos.X, torsoPos.Y))
+                        local HumanoidRootPartPos = camera:WorldToViewportPooint(v.Character.HuumanoidRootPart.Position)
+                        local HumanoidRootPartDist = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(TorsoPos.X, torsoPos.Y))
+                        if torsoDist > HumanoidRootpartDist then
+                            if notBehindWall(v.Character.HumanoidRootPart) then
+                                target = v.Character.HumanoidRootPart
+                            end
+                        else
+                            if notBehindWall(v.Ch
+                                
+end)
