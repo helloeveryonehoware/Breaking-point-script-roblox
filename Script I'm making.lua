@@ -172,6 +172,31 @@ function getPlayerClosestToMouse()
                                 target = v.Character.HumanoidRootPart
                             end
                         else
-                            if notBehindWall(v.Ch
-                                
+                            if notBehindWall(v.Character.HumanoidRootPart) then
+                                target = v.Character.HumanoidRootPart
+                                end
+                            end
+                        maxDist = dist
+                        end
+                    end
+                end
+            end
+        return target
+      end
+    
+    -->Hooking to the remote <--
+    local gmt = getrawmetatable(game)
+    setreadonly(gmt, false)
+    local oldNameCall = gmt._namecall
+    
+    gmt._namecall = newcclosure(function(self, ...)
+            local Args = {...}
+            local method = getnnamecallmethod()
+            if tostring(self) == "HitPart" and tostring(method) == "FireServer" then
+                Args[1] = getPlayerClosestToMouse()
+                Args[2] = getPlayerClosestToMouse().Position
+                return self.FireServer(self, Unpack(Args))
+             end
+            return oldNameCall(self, ...) 
+end)
 end)
