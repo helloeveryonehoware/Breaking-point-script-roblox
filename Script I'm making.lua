@@ -250,6 +250,7 @@ ChatService.SpeakerAdded:Connect(function(PlrName)
  end
 end)
 
+-- chams
 Playerhacks:NewButton("chams", "highlights characters in the dark", function()
     getgenv().chams = false
     local Players = game:GetService("Players") -- variable to get the players in the game
