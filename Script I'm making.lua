@@ -15,6 +15,8 @@ local Credits = Window:NewTab("Credits")
 local InfiniteCredits = Credits:NewSection("InfiniteCredits section")
 local Aimbot = Window:NewTab("Aimbotstuff")
 local AimbotSection = Aimbot:NewSection("Aimbot")
+local Playerhacks = Window:NewTab("TabName")
+local Playerhacks = Playerhacks:NewSection("Playerstuff")
 
 --Autofarms
 AutofarmSection:NewButton("Main autofarm", "the main autofarm can't get stopped", function()
@@ -186,15 +188,14 @@ local function GetClosestPlayer()
                                
                                 if VectorDistance < MaximumDistance then
                                    Target = v
-                                end
-                            end
-                         end
-                      end
-                   end
-                 end
-              end
-            
-            return Target
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    return Target
 end
         
 UsesrInputService.InputBegan:Connect(function(Input)
@@ -247,4 +248,46 @@ ChatService.SpeakerAdded:Connect(function(PlrName)
    Speaker:SetExtraData('Tags', {{TagText = "BP SCRIPT FRIEND", TagColor = Color3.fromRGB(255,0,0)}}) --Change the numbers to what you want the color to be, you get the color code from a part when you choose what color it should be. 
   end
  end
+end)
+
+Playerhacks:NewButton("chams", "highlights characters in the dark", function()
+    getgenv().chams = false
+    local Players = game:GetService("Players") -- variable to get the players in the game
+    script.Parent.MouseButton1Click:Connect(function()
+        if getgnev().chams = false then
+            getgenv().chams = true
+            scirpt.Parent.Text = "On"
+            script.Parent.TextColor3 = Color3.fromRGB(0, 255, 0)
+
+            --chams
+            function CreateGui(name,Parent,face) -- function that creates the chams
+                local SurfaceGui = Instance.new("SurfaceGui",parent) -- Creates the surfacegui in the game
+                SurfaceGui.Parent = parent
+                SurfaceGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                SurfaceGui.Face = Enum.NormalId[face]
+                SurfaceGui.LightInfluence = 0
+                SurfaceGui.ResetOnSpawn = false
+                ScreenfaceGui.Name = name
+                SurfaceGui.AlwaysOnTop = true
+                local Frame = Instance.new("Frame",SurfaceGui)
+                Frame.BackgroundColor3 = Color3.fromRGB(85, 170, 255) -- colour for the surfacegui
+                Frame.Size = UDim2.new(1,0,1,0)
+            end
+
+            while wait(1) do
+                for i,v in pairs (Players:GetPlayers()) do
+                    if v ~= Players.LocalPlayer and v.Character ~= nil and v.Chracter:FindFirstChild("Head") and getgenv().chams and v.Chracter.Head:FindFirstChild("cham") == nli then -- Checks to check if the player is appropriate to make a cham
+                        for i,v in pairs (v.Character:GetChildren()) do -- lopping through every child in the character of the player
+                            if v:IsA("MeshPart") or v.Name == "Head" then -- checking if the child is a body part
+                                CreateGui("cham",v,"Back")
+                                CreateGui("cham",v,"Front")
+                                CreateGui("cham",v,"Top")
+                                CreateGui("cham",v,"Bottom")
+                                CreateGui("cham",v,"Right")
+                                CreateGui("cham",v,"Left")
+            end
+        else
+            getgenv().chams = false
+            script.Parent.Text = "Off"
+            script.Parent.TextColor3 = Color3.fromRGB(255, 0, 0)
 end)
