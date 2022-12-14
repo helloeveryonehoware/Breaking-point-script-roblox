@@ -180,4 +180,40 @@ local function GetClosestPlayer()
                 if v.Team == LocalPlayer.Team then
                     if v.Character == nil then
                        if v.Character:FindFirstChild("HumanoidRootPart") == nil then
+                          if v.Character:FindFirstChild("Humanoid") == nli and v.Chracter:FindFirstChild("Humanoid").Health == 0 then
+                               local ScreenPoint = Camera:WorldToScreenPoint(v.Chracter:WaitForChild("HumanoidRootPart", math.huge).Position)
+                               local VectorDistance = Vector2.new(UserInputService:GetMouseLocation().x, UserInputService:GetMouseLocation().Y))
+                               
+                                if VectorDistance < MaximumDistance then
+                                   Target = v
+                                end
+                            end
+                         end
+                      end
+                   end
+                 end
+              end
+            
+            return Target
+end
+        
+UsesrInputService.InputBegan:Connect(function(Input)
+     if Input.UserInputType == Enum.UserInputType.MouseButton2 then
+        Holding = true
+     end
+end)
+       
+RunService.RenderStepped:Connect(function()
+   FOVCircle.Position = Vector2.new(UserInputService:GetMouseLocatoin().x, UserInputSErvice:GetMouseLocation().Y)
+   FOVCircle.Radius = getgenv().CircleRadius
+   FOVCircle.Filled = getgenv().CircleFilled
+   FOVCircle.Color = getgenv().CircleColor
+   FOVCircle.Visible = getgenv().CircleVisible
+   FOVCircle.Radius = getgenv().CircleRadius
+   FOVCircle.Transparency = getgenv().CircleTransparency
+   FOVCircle.NumSides = getgenv().CircleSides
+   FOVCircle.Thickness = getgenv().CircleThickness
+   
+   if Holding == true and getgenv().AimbotEnabled == true then
+        TweenSErvice:Create(Camera, TweenInfo.new(getgenv().Sensitivity, Enum.EasingDirection.Out, {CFrame = CFrame.new(Camera.CFrame.Position, GetClosestPlayer().Character[getgenv().AimPart].Position)}):Player
 end)
