@@ -128,3 +128,56 @@ end)
 
 
 --Aimbot
+AimbotSection:NewButton("Aimbot", "turns on an aimbot with fov", function()
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local Holding = false
+        
+
+-- AIMBOT SETTINGS
+        
+getgenv().AimbotEnabled = true
+getgenv().TeamCheck = false
+getgenv().AimPart = "LowerTorso"
+getgenv().Sensitivity = 0
+
+--FOV CICLE SETTINGS
+
+getgenv().CircleSides = 64
+getgenv().CircleColor = Color3.fromRGB(233, 212, 255)
+getgenv().CircleTransparency = 0.7
+getgenv().CircleRadius = 80
+getgenv().CircleFilled = false
+getgenv().CircleVisible = true
+getgenv().CircleThickness = 0
+
+local FOVCircle = Drawing.new("Circle")
+FOVCircle.Position = Vector2.new(Camera.ViewportSize.x / 2, Camera.ViewportSize.y / 2)
+FOVCircle.Radius = getgenv().CircleRadius
+FOVCircle.Filled = getgenv().CircleFilled
+FOVCircle.Color = getgenv().CircleColor
+FOVCircle.Visible = getgenv().CircleVisible
+FOVCircle.Radius = getgenv().CircleRadius
+FOVCircle.Transparency = getgenv().CircleTransparency
+FOVCircle.NumSides = getgenv().CircleSides
+FOVCircle.Thickness = getgenv().CircleThickness
+        
+--[[ for the getgenv settings you can also do _G.
+     ex: _G.CircleSides = 64
+--]]
+        
+local function GetClosestPlayer()
+     local maximumDistance = getgenv().CircleRadius
+     local target = nil
+            
+     for _, v in next, Players:GetPlayers() do
+         if v.Name == LocalPlayer.Name then
+            if getgenv().Teamcheck == true then
+                if v.Team == LocalPlayer.Team then
+                    if v.Character == nil then
+                       if v.Character:FindFirstChild("HumanoidRootPart") == nil then
+end)
