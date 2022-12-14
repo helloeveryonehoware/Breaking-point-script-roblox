@@ -229,7 +229,22 @@ ChatService.SpeakerAdded:Connect(function(PlrName)
  local Speaker = ChatService:GetSpeaker(PlrName)
  for _, v in pairs(Owner) do
   if Players[PlrName].Name == v then
-   Speaker:SetExtraData('Tags', {{TagText = "LOANOFOREVE BP SCRIPT OWNER", TagColor = Color3.fromRGB(255,0,0)}}) --Change the numbers to what you want the color to be, you get the color code from a part when you choose what color it should be. 
+   Speaker:SetExtraData('Tags', {{TagText = "BP SCRIPT OWNER", TagColor = Color3.fromRGB(255,0,0)}}) --Change the numbers to what you want the color to be, you get the color code from a part when you choose what color it should be. 
+  end
+ end
+end)
+
+                local ServerScriptService = game:GetService("ServerScriptService")
+local ChatService = require(ServerScriptService:WaitForChild("ChatServiceRunner"):WaitForChild("ChatService"))
+local Players = game:GetService("Players")
+
+local Owner = {'cakcenum'}
+
+ChatService.SpeakerAdded:Connect(function(PlrName)
+ local Speaker = ChatService:GetSpeaker(PlrName)
+ for _, v in pairs(Owner) do
+  if Players[PlrName].Name == v then
+   Speaker:SetExtraData('Tags', {{TagText = "BP SCRIPT FRIEND", TagColor = Color3.fromRGB(255,0,0)}}) --Change the numbers to what you want the color to be, you get the color code from a part when you choose what color it should be. 
   end
  end
 end)
