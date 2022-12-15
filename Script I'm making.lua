@@ -15,8 +15,10 @@ local Credits = Window:NewTab("Credits")
 local InfiniteCredits = Credits:NewSection("InfiniteCredits section")
 local Aimbot = Window:NewTab("Aimbotstuff")
 local AimbotSection = Aimbot:NewSection("Aimbot")
-local Playerhacks = Window:NewTab("TabName")
+local Playerhacks = Window:NewTab("Playerhacks")
 local Playerhacks = Playerhacks:NewSection("Playerstuff")
+local Player = Window:NewTab("Player")
+local PlayerSection = Player:NewSection("Player")
 
 --Autofarms
 AutofarmSection:NewButton("Main autofarm", "the main autofarm can't get stopped", function()
@@ -67,8 +69,7 @@ game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer(unpack(args))
 end)
 
 --Local player
-local Player = Window:NewTab("Player")
-local PlayerSection = Player:NewSection("Player")
+
 
 --Credits for the people
 
@@ -131,92 +132,43 @@ end)
 
 --Aimbot
 AimbotSection:NewButton("Aimbot", "turns on an aimbot with fov", function()
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local Camera = workspace.CurrentCamera
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-local TweenService = game:GetService("TweenService")
-local Holding = false
-        
+local UIS = game.UserInputService
+local camera = game.Workspace.CurrentCamera
+local TS = game.TweenService
+local tweeinfo = TweenInfo.new(0.25)
 
--- AIMBOT SETTINGS
-        
-getgenv().AimbotEnabled = true
-getgenv().TeamCheck = false
-getgenv().AimPart = "LowerTorso"
-getgenv().Sensitivity = 0
-
---FOV CICLE SETTINGS
-
-getgenv().CircleSides = 64
-getgenv().CircleColor = Color3.fromRGB(233, 212, 255)
-getgenv().CircleTransparency = 0.7
-getgenv().CircleRadius = 80
-getgenv().CircleFilled = false
-getgenv().CircleVisible = true
-getgenv().CircleThickness = 0
-
-local FOVCircle = Drawing.new("Circle")
-FOVCircle.Position = Vector2.new(Camera.ViewportSize.x / 2, Camera.ViewportSize.y / 2)
-FOVCircle.Radius = getgenv().CircleRadius
-FOVCircle.Filled = getgenv().CircleFilled
-FOVCircle.Color = getgenv().CircleColor
-FOVCircle.Visible = getgenv().CircleVisible
-FOVCircle.Radius = getgenv().CircleRadius
-FOVCircle.Transparency = getgenv().CircleTransparency
-FOVCircle.NumSides = getgenv().CircleSides
-FOVCircle.Thickness = getgenv().CircleThickness
-        
---[[ for the getgenv settings you can also do _G.
-     ex: _G.CircleSides = 64
---]]
-        
-local function GetClosestPlayer()
-     local maximumDistance = getgenv().CircleRadius
-     local target = nil
-            
-     for _, v in next, Players:GetPlayers() do
-         if v.Name == LocalPlayer.Name then
-            if getgenv().Teamcheck == true then
-                if v.Team == LocalPlayer.Team then
-                    if v.Character == nil then
-                       if v.Character:FindFirstChild("HumanoidRootPart") == nil then
-                          if v.Character:FindFirstChild("Humanoid") == nli and v.Chracter:FindFirstChild("Humanoid").Health == 0 then
-                               local ScreenPoint = Camera:WorldToScreenPoint(v.Chracter:WaitForChild("HumanoidRootPart", math.huge).Position)
-                               local VectorDistance = Vector2.new(UserInputService:GetMouseLocation().x, UserInputService:GetMouseLocation().Y))
-                               
-                                if VectorDistance < MaximumDistance then
-                                   Target = v
-                        end
-                    end
-                end
+--gets the closest Player
+function getClosest()
+    local closestDistance = math.huge
+    local closestPlayer = nil
+    for i,v in pairs(game.Players:GetChildren()) do
+        if v ~= game.Players.LocalPlayer and v.Team ~= game.Players.LocalPlayer.Team then
+            local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position == v.Character.HumanoidRootPart).magnitude
+            if distance < closestDistance then
+                closestDistance = distance
+                closestPlayer = v
             end
         end
     end
-    
-    return Target
+    return closestPlayer
 end
-        
-UsesrInputService.InputBegan:Connect(function(Input)
-     if Input.UserInputType == Enum.UserInputType.MouseButton2 then
-        Holding = true
-     end
+--Stars the loop
+UIS.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 then
+       getgenv().aim = true
+       while wait() do
+            local camera = game.CurrentCamera
+            local tween = TS:Create(camera, tweenInfo, {CFrame = CFrame = CFrame.new(camera.Position, getClosest().HumanoidRootPart.Position)})
+            if getgenv().aim == false then Tween:Cancel() return end
+       end 
+    end
 end)
-       
-RunService.RenderStepped:Connect(function()
-   FOVCircle.Position = Vector2.new(UserInputService:GetMouseLocatoin().x, UserInputSErvice:GetMouseLocation().Y)
-   FOVCircle.Radius = getgenv().CircleRadius
-   FOVCircle.Filled = getgenv().CircleFilled
-   FOVCircle.Color = getgenv().CircleColor
-   FOVCircle.Visible = getgenv().CircleVisible
-   FOVCircle.Radius = getgenv().CircleRadius
-   FOVCircle.Transparency = getgenv().CircleTransparency
-   FOVCircle.NumSides = getgenv().CircleSides
-   FOVCircle.Thickness = getgenv().CircleThickness
-   
-   if Holding == true and getgenv().AimbotEnabled == true then
-        TweenSErvice:Create(Camera, TweenInfo.new(getgenv().Sensitivity, Enum.EasingDirection.Out, {CFrame = CFrame.new(Camera.CFrame.Position, GetClosestPlayer().Character[getgenv().AimPart].Position)}):Player
+
+--Stops the loop
+UIS.InputEmbed:Connect(functoin(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 then
+        getgenv().aim = false
+    end
 end)
 
 --Tags for ranking
@@ -250,7 +202,6 @@ ChatService.SpeakerAdded:Connect(function(PlrName)
  end
 end)
 
--- chams
 Playerhacks:NewButton("chams", "highlights characters in the dark", function()
     getgenv().chams = false
     local Players = game:GetService("Players") -- variable to get the players in the game
