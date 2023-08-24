@@ -9,6 +9,6 @@ Also if you would like to contribute then please download the file and send it t
 
 my discord:
 
-- Iloveusingthis#2359
+- nyra.da
 
-Also I open-source my code so don't be a skid and take all the credit for yourself also I added a credits notification so that everyone can see the people's scripts I used and who helped me make the scripts
+Also I open-source my code so don't be a skid and take all the credit for yourself also I added a credits notification so that everyone can see the people's scripts I used and who helped me make the scripts key is: loanoforevebpontop, loanoforeve, loanoforevebp
