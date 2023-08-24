@@ -182,3 +182,18 @@ local InfiniteCreditsstuff = Creditstab:CreateButton({
 
 
 
+-- notifications or whatever
+Rayfield:Notify({
+    Title = "/e rain stuff",
+    Content = "say /e rain when u dupe it to use the animation",
+    Duration = 6.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+       Ignore = {
+          Name = "Okay!",
+          Callback = function()
+          print("The user tapped Okay!")
+       end
+    },
+ },
+ })
