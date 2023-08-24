@@ -14,7 +14,8 @@ local Window = Rayfield:CreateWindow({
        Enabled = false,
        Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
        RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-    }, true to use our key system
+    },
+	KeySystem = true,
     KeySettings = {
        Title = "loanoforevebp key sys",
        Subtitle = "Key System",
@@ -81,7 +82,7 @@ local eraindupe = Dupes:CreateButton({
  })
 
  local Royalreddupe = Dupes:CreateButton({
-    Name = "Button Example",
+    Name = "Royal red",
     Callback = function()
         local args = {
             [1] = 66,
